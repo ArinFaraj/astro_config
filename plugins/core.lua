@@ -5,21 +5,33 @@ return {
     opts = function(_, opts)
       -- customize the dashboard header
       opts.section.header.val = {
-        " █████  ███████ ████████ ██████   ██████",
-        "██   ██ ██         ██    ██   ██ ██    ██",
-        "███████ ███████    ██    ██████  ██    ██",
-        "██   ██      ██    ██    ██   ██ ██    ██",
-        "██   ██ ███████    ██    ██   ██  ██████",
-        " ",
-        "    ███    ██ ██    ██ ██ ███    ███",
-        "    ████   ██ ██    ██ ██ ████  ████",
-        "    ██ ██  ██ ██    ██ ██ ██ ████ ██",
-        "    ██  ██ ██  ██  ██  ██ ██  ██  ██",
-        "    ██   ████   ████   ██ ██      ██",
+        "████████ ██   ██ ███████  ███    ██ ██    ██ ██ ███    ███",
+        "   ██    ██   ██ ██       ████   ██ ██    ██ ██ ████  ████",
+        "   ██    ███████ ███████  ██ ██  ██ ██    ██ ██ ██ ████ ██",
+        "   ██    ██   ██ ██       ██  ██ ██  ██  ██  ██ ██  ██  ██",
+        "   ██    ██   ██ ███████  ██   ████   ████   ██ ██      ██",
       }
       return opts
     end,
   },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = function(_, opts)
+      opts.filesystem.filtered_items = {
+        visible = true,
+        hide_dotfiles = false,
+        hide_gitignored = false,
+        show_hidden_count = true,
+        hide_by_name = {
+          ".DS_Store",
+          "thumbs.db",
+          "node_modules",
+        },
+        never_show = {},
+      }
+      return opts
+    end,
+  }
   -- You can disable default plugins as follows:
   -- { "max397574/better-escape.nvim", enabled = false },
   --
