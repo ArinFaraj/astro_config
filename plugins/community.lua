@@ -10,4 +10,5 @@ return {
   { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.pack.json" },
+  { import = "astrocommunity.pack.lua" },
 }
