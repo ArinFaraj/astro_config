@@ -46,48 +46,48 @@ return {
     },
     setup_handlers = {
       -- add custom handler
-      dartls = function(_, opts)
-        require("flutter-tools").setup {
-          lsp = opts,
-          fvm = true,
-          debugger = {
-            enabled = true,
-            run_via_dap = true,
-            register_configuration = function(paths)
-              require("dap").configurations.dart = {
-                {
-                  type = "dart",
-                  request = "launch",
-                  name = "Launch Flutter",
-                  program = "${workspaceFolder}/lib/main.dart",
-                  -- cwd = vim.fn.getcwd(),
-                  -- dartSdkPath = paths.dart_sdk,
-                  -- flutterSdkPath = paths.flutter_sdk,
-                },
-              }
-              require("dap.ext.vscode").load_launchjs()
-            end
-          }
-
-        }
-      end,
+      -- dartls = function(_, opts)
+      --   require("flutter-tools").setup {
+      --     lsp = opts,
+      --     fvm = true,
+      --     debugger = {
+      --       enabled = true,
+      --       run_via_dap = true,
+      --       register_configuration = function(paths)
+      --         require("dap").configurations.dart = {
+      --           {
+      --             type = "dart",
+      --             request = "launch",
+      --             name = "Launch Flutter",
+      --             program = "${workspaceFolder}/lib/main.dart",
+      --             -- cwd = vim.fn.getcwd(),
+      --             -- dartSdkPath = paths.dart_sdk,
+      --             -- flutterSdkPath = paths.flutter_sdk,
+      --           },
+      --         }
+      --         require("dap.ext.vscode").load_launchjs()
+      --       end
+      --     }
+      --
+      --   }
+      -- end,
     },
     -- enable servers that you already have installed without mason
     servers = {
-      "dartls",
+      -- "dartls",
       -- "pyright"
     },
     config = {
-      dartls = {
-        -- any changes you want to make to the LSP setup, for example
-        color = {
-          enabled = true,
-        },
-        settings = {
-          showTodos = true,
-          completeFunctionCalls = true,
-        },
-      },
+      -- dartls = {
+      --   -- any changes you want to make to the LSP setup, for example
+      --   color = {
+      --     enabled = true,
+      --   },
+      --   settings = {
+      --     showTodos = true,
+      --     completeFunctionCalls = true,
+      --   },
+      -- },
     },
   },
   -- Configure require("lazy").setup() options
