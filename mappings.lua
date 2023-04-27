@@ -9,9 +9,19 @@ return {
     -- second key is the lefthand side of the map
     -- mappings seen under group name "Buffer"
     ["<leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
+    ["<leader>lv"] = {
+      function() require("telescope").extensions.flutter.fvm() end,
+      desc = "Flutter Version Manager",
+    },
+    ["<leader>fd"] = {
+      function() require("telescope").extensions.flutter.commands() end,
+      desc = "Flutter",
+    },
     ["<leader>bD"] = {
       function()
-        require("astronvim.utils.status").heirline.buffer_picker(function(bufnr) require("astronvim.utils.buffer").close(bufnr) end)
+        require("astronvim.utils.status").heirline.buffer_picker(
+          function(bufnr) require("astronvim.utils.buffer").close(bufnr) end
+        )
       end,
       desc = "Pick to close",
     },

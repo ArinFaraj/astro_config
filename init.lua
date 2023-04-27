@@ -16,16 +16,13 @@ return {
       --   ["remote3"] = "github_user", -- GitHub user assume AstroNvim fork
     },
   },
-
   -- Set colorscheme to use
   colorscheme = "astrodark",
-
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
     virtual_text = true,
     underline = true,
   },
-
   lsp = {
     -- customize lsp formatting options
     formatting = {
@@ -49,27 +46,26 @@ return {
     },
     setup_handlers = {
       -- add custom handler
-      dartls = function(_, opts) require("flutter-tools").setup { lsp = opts } end,
+      -- dartls = function(_, opts) require("flutter-tools").setup { lsp = opts } end,
     },
     -- enable servers that you already have installed without mason
     servers = {
-      "dartls",
+      -- "dartls",
       -- "pyright"
     },
     config = {
-      dartls = {
-        -- any changes you want to make to the LSP setup, for example
-        color = {
-          enabled = true,
-        },
-        settings = {
-          showTodos = true,
-          completeFunctionCalls = true,
-        },
-      },
+      -- dartls = {
+      --   -- any changes you want to make to the LSP setup, for example
+      --   color = {
+      --     enabled = true,
+      --   },
+      --   settings = {
+      --     showTodos = true,
+      --     completeFunctionCalls = true,
+      --   },
+      -- },
     },
   },
-
   -- Configure require("lazy").setup() options
   lazy = {
     defaults = { lazy = true },
@@ -80,11 +76,29 @@ return {
       },
     },
   },
-
   -- This function is run last and is a good place to configuring
   -- augroups/autocommands and custom filetypes also this just pure lua so
   -- anything that doesn't fit in the normal config locations above can go here
   polish = function()
+    require("flutter-tools").setup {
+      fvm = true,
+      debugger = {
+        -- integrate with nvim dap
+        enabled = true,
+        run_via_dap = true,
+        register_configurations = function(_)
+          local ok2, dap = pcall(require, "dap")
+          if not ok2 then return end
+          -- dap.adapters.dart = {
+          --   type = "executable",
+          --   command = "flutter",
+          --   args = { "debug_adapter" },
+          -- }
+          dap.configurations.dart = {}
+          require("dap.ext.vscode").load_launchjs()
+        end,
+      },
+    }
     -- Set up custom filetypes
     -- vim.filetype.add {
     --   extension = {
